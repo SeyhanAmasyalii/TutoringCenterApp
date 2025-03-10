@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TeacherListScreen from './screens/TeacherListScreen';
 import TeacherDetailScreen from './screens/TeacherDetailScreen';
 import TeacherFormScreen from './screens/TeacherFormScreen';
+import TeacherCreateScreen from './screens/TeacherCreateScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,11 @@ export default function App() {
           name="TeacherForm"
           component={TeacherFormScreen}
           options={{ title: 'Öğretmen Formu' }}
+        />
+        <Stack.Screen
+          name="TeacherCreate"
+          component={TeacherCreateScreen}
+          options={{ title: 'Yeni Öğretmen' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

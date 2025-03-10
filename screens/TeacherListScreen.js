@@ -99,6 +99,13 @@ export default function TeacherListScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity 
+        style={styles.createButton}
+        onPress={() => navigation.navigate('TeacherCreate')}
+      >
+        <Text style={styles.createButtonText}>Öğretmen Oluştur</Text>
+      </TouchableOpacity>
+
       {teachers.length === 0 ? (
         <Text style={styles.noDataText}>Henüz öğretmen bulunmamaktadır.</Text>
       ) : (
@@ -112,6 +119,7 @@ export default function TeacherListScreen({ navigation }) {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -178,5 +186,17 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
     color: '#666',
+  },
+  createButton: {
+    backgroundColor: '#2196F3',
+    padding: 15,
+    borderRadius: 8,
+    margin: 16,
+    alignItems: 'center',
+  },
+  createButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
