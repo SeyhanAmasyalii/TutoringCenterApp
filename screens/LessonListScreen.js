@@ -44,7 +44,7 @@ export default function LessonListScreen({ navigation }) {
         style={styles.nameContainer}
         onPress={() => navigation.navigate('LessonDetail', { lessonId: item.fLessonId })}
       >
-        <Text style={styles.itemText}>{item.fLessonName}</Text>
+        <Text style={styles.linkText}>{item.fLessonName}</Text>
         <Text style={styles.descriptionText}>{item.fLessonDescription}</Text>
       </TouchableOpacity>
 
@@ -115,15 +115,23 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 15,
     marginBottom: 10,
-    elevation: 2
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   nameContainer: {
-    marginBottom: 10
+    marginBottom: 10,
+    paddingVertical: 4, // Dokunma alanını artır
   },
-  itemText: {
+  // Yeni eklenen link stili
+  linkText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333'
+    color: '#2196F3', // Mavi renk
+    textDecorationLine: 'underline', // Alt çizgi
+    marginBottom: 4,
   },
   descriptionText: {
     fontSize: 14,
@@ -132,7 +140,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    gap: 10, // Butonlar arası boşluk
   },
   updateButton: {
     backgroundColor: '#4CAF50',
@@ -140,7 +149,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     minWidth: 80,
     alignItems: 'center',
-    marginRight: 10
   },
   deleteButton: {
     backgroundColor: '#f44336',

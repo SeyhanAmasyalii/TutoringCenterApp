@@ -6,13 +6,12 @@ import { teacherService } from '../services/teacherService';
 export default function TeacherListScreen({ navigation }) {
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const isFocused = useIsFocused(); // Sayfa odaklanma durumunu takip et
+  const isFocused = useIsFocused();
 
   const fetchTeachers = async () => {
     setLoading(true);
     try {
       const data = await teacherService.getTeachers();
-      // Backend'den gelen verileri frontend format'ına dönüştür
       const transformedData = data.map((teacher, index) => ({
         fTeacherId: teacher.TeacherId || `temp-id-${index}`,
         fTeacherName: teacher.TeacherName,
@@ -30,18 +29,16 @@ export default function TeacherListScreen({ navigation }) {
     }
   };
 
-  // Sayfa odaklandığında fetchTeachers fonksiyonunu çağır
   useEffect(() => {
     if (isFocused) {
       fetchTeachers();
     }
-  }, [isFocused]); // isFocused değiştiğinde effect tetiklenecek
+  }, [isFocused]);
 
   const handleDelete = async (teacherId) => {
     try {
       await teacherService.deleteTeacher(teacherId);
       alert('Öğretmen başarıyla silindi!');
-      // Silme işleminden sonra listeyi güncelle
       fetchTeachers();
     } catch (error) {
       console.error('Silme hatası:', error);
@@ -55,12 +52,11 @@ export default function TeacherListScreen({ navigation }) {
         style={styles.nameContainer}
         onPress={() => navigation.navigate('TeacherDetail', { teacherId: item.fTeacherId })}
       >
-        <Text style={styles.itemText}>
+        <Text style={styles.linkText}>
           {item.fTeacherName} {item.fTeacherSurname}
         </Text>
-        <Text style={styles.emailText}>
-          {item.fTeacherEmail}
-        </Text>
+        <Text style={styles.infoText}>{item.fTeacherPhone}</Text>
+        <Text style={styles.infoText}>{item.fTeacherEmail}</Text>
       </TouchableOpacity>
 
       <View style={styles.buttonContainer}>
@@ -120,7 +116,6 @@ export default function TeacherListScreen({ navigation }) {
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -148,15 +143,20 @@ const styles = StyleSheet.create({
   nameContainer: {
     marginBottom: 10,
   },
-  itemText: {
+  // Yeni eklenen link stili
+  linkText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#2196F3', // Mavi renk
+    textDecorationLine: 'underline', // Alt çizgi
+    marginBottom: 4,
+    paddingVertical: 4, // Dokunma alanını artır
   },
-  emailText: {
+  // Normal metin stili
+  infoText: {
     fontSize: 14,
     color: '#666',
-    marginTop: 4,
+    marginTop: 2,
   },
   buttonContainer: {
     flexDirection: 'row',
