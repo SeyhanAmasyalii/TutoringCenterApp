@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-//const BASE_URL = 'https://tutoringcentermanagerapp-gbhbfxeydac5crfc.westeurope-01.azurewebsites.net/api/teacher-lesson'; // Backend API URL'sini buraya yazın
+import { ENDPOINTS } from '../config'; // config.js dosyasını içe aktarın
 
-const BASE_URL = 'http://192.168.1.107:5185/api/teacher-lesson'; // Backend API URL'sini buraya yazın
+const BASE_URL = ENDPOINTS.TEACHER_LESSON;
 
 
 export const teacherLessonService = {

@@ -17,6 +17,14 @@ export default function HomeScreen({ navigation }) {
       >
         <Text style={styles.buttonText}>Dersler</Text>
       </TouchableOpacity>
+
+      {/* Yeni eklenen Öğrenciler butonu */}
+      <TouchableOpacity 
+        style={styles.button} 
+        onPress={() => navigation.navigate('StudentList')}
+      >
+        <Text style={styles.buttonText}>Öğrenciler</Text>
+      </TouchableOpacity>
     </View>
   );
 }
